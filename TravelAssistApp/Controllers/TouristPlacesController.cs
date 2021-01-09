@@ -143,23 +143,25 @@ namespace TravelAssistApp.Controllers
             return View(touristPlace);
         }
 
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    TouristPlace touristPlace = _context.TouristPlaces.Find(id);
-        //    _context.TouristPlaces.Remove(touristPlace);
-        //    _context.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        _context.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            TouristPlace touristPlace = _touristPlacesService.GetTouristPlaceDetailsById(id);
+            try
+            {
+                if (_touristPlacesService.DeleteTouristPlace(touristPlace))
+                {
+                    ViewBag.Message = "Successfully deleted";
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
+                ViewBag.Message = "Operation failed";
+            }
+            
+            return RedirectToAction("Index");
+        }
     }
 }

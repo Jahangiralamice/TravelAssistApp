@@ -12,6 +12,7 @@ namespace TravelAssistApp.Service
         bool AddTouristPlace(TouristPlace touristPlace);
         bool UpdateTouristPlace(TouristPlace touristPlace);
         TouristPlace GetTouristPlaceDetailsById(int touristPlaceId);
+        bool DeleteTouristPlace(TouristPlace touristPlace);
         bool SaveRecord();
     }
 
@@ -31,6 +32,21 @@ namespace TravelAssistApp.Service
             try
             {
                 _touristPlacesRepository.Add(touristPlace);
+                SaveRecord();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
+                return false;
+            }
+        }
+
+        public bool DeleteTouristPlace(TouristPlace touristPlace)
+        {
+            try
+            {
+                _touristPlacesRepository.Delete(touristPlace);
                 SaveRecord();
                 return true;
             }

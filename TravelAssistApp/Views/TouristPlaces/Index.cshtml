@@ -8,11 +8,31 @@
 <style>
     .itemImage {
         /*position: absolute;*/
-        width: 46px;
+        width: 150px;
         top: 2px;
         border: 1px solid #d0cece;
         border-radius: 4px;
         left: 3px;
+    }
+
+    .title{
+        width: 10%;
+        text-align:center;
+    }
+
+    .description {
+        width: 45%;
+        text-align: center;
+    }
+
+    .image {
+        width: 30%;
+        text-align: center;
+    }
+
+    .action {
+        width: 15%;
+        text-align: center;
     }
 </style>
 
@@ -23,16 +43,16 @@
 </p>
 <table class="table">
     <tr>
-        <th>
+        <th class="title">
             @Html.DisplayNameFor(model => model.Title)
         </th>
-        <th>
+        <th class="description">
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        <th>
+        <th class="imagePath">
             @Html.DisplayNameFor(model => model.ImagePath)
         </th>
-        <th></th>
+        <th class="action">Action</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -40,7 +60,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
-        <td>
+        <td class="description">
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
@@ -55,7 +75,7 @@
 
             }
         </td>
-        <td>
+        <td class="action">
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })

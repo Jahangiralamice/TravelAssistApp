@@ -5,6 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .itemImage {
+        /*position: absolute;*/
+        width: 46px;
+        top: 2px;
+        border: 1px solid #d0cece;
+        border-radius: 4px;
+        left: 3px;
+    }
+</style>
+
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
@@ -33,7 +44,16 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ImagePath)
+            @*@Html.DisplayFor(model => model.ImagePath)*@
+            @if (String.IsNullOrEmpty(Model.ImagePath))
+            {
+                <img src="@Url.Content("~/Content/images/noImage.jpg")" class="itemImage" />
+            }
+            else
+            {
+                <img src="@Url.Content("~/" + Model.ImagePath)" class="itemImage" />
+
+            }
         </dd>
 
     </dl>
