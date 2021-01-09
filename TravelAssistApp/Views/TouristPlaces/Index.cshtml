@@ -5,6 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .itemImage {
+        /*position: absolute;*/
+        width: 46px;
+        top: 2px;
+        border: 1px solid #d0cece;
+        border-radius: 4px;
+        left: 3px;
+    }
+</style>
+
 <h2>Index</h2>
 
 <p>
@@ -33,7 +44,16 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ImagePath)
+            @*@Html.DisplayFor(modelItem => item.ImagePath)*@
+            @if (String.IsNullOrEmpty(item.ImagePath))
+            {
+                <img src="@Url.Content("~/Content/images/noImage.jpg")" class="itemImage" />
+            }
+            else
+            {
+                <img src="@Url.Content("~/" + item.ImagePath)" class="itemImage" />
+
+            }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

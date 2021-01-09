@@ -65,6 +65,14 @@ namespace TravelAssistApp.Models
     public class RegisterViewModel
     {
         [Required]
+        [StringLength(150, ErrorMessage = "Maximum length should be 150 characters")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
